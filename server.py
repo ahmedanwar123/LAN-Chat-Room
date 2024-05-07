@@ -1,10 +1,9 @@
-# Server
 import socket
 import threading
 
 my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 PORT = 8000
-ADDRESS = "0.0.0.0"
+ADDRESS = "0.0.0.0" # Enter Server IP
 broadcast_list = []
 
 my_socket.bind((ADDRESS, PORT))
@@ -19,20 +18,21 @@ def accept_loop():
 def start_listenning_thread(client):
     client_thread = threading.Thread(
             target=listen_thread,
-            args=(client,) #the list of argument for the function
+            args=(client,)
         )
     client_thread.start()
-
+    
+# Recieve all clients messages
 def listen_thread(client):
     while True:
         message = client.recv(1024).decode()
         if message:
-            print(f"Received message : {message}")
+            print(f"\n{message}")
             broadcast(message)
         else:
             print(f"client has been disconnected : {client}")
             return
-
+# Send messagee to all clients
 def broadcast(message):
     for client in broadcast_list:
         try:
@@ -43,14 +43,13 @@ def broadcast(message):
 
 # Function to send message from server
 def send_message():
+    name = input("Server Name: ")
     while True:
-        message = input("Server: ")
-        broadcast(message)
+        message = input("Message: ")
+        broadcast(name + ": "+ message)
 
-# Start the server
 accept_thread = threading.Thread(target=accept_loop)
 accept_thread.start()
 
-# Start thread to send message from server
 send_message_thread = threading.Thread(target=send_message)
 send_message_thread.start()
