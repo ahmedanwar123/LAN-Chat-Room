@@ -4,7 +4,7 @@ import threading
 my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 PORT = 8000
 ADDRESS = "0.0.0.0" # Enter Server IP
-broadcast_list = []
+broadcast_list = o
 
 my_socket.bind((ADDRESS, PORT))
 
