@@ -35,7 +35,7 @@ This repository contains the code for a simple chat room application implemented
    python server.py
    ```
 
-4. Run multiple instances of the client script `client.py` and provide a unique nickname for each client:
+4. Run multiple instances of the client script `client.py` and provide a name for each client:
 
    ```bash
    python client.py
