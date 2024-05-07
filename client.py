@@ -7,7 +7,7 @@ while not client_name:
     client_name = input("Your Name should not be empty : ").strip()
 
 my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-host = "10.112.2.17" # Server IP
+host = "0.0.0.0" # Server IP
 port = 8000
 my_socket.connect((host, port))
 
